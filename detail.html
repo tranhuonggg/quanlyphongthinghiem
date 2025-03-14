@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <!-- jQuery, Bootstrap Date Range Picker -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/CSS/info.css">
+    <!-- jQuery (bắt buộc nếu dùng Bootstrap modal và daterangepicker) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Moment.js (cho daterangepicker nếu có) -->
+    <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+
+    <!-- Daterangepicker -->
+    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+    <!-- Bootstrap Bundle (gồm cả Popper và Modal JS) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <title>Thông tin chi tiết </title>
+    <style>
+        .daterangepicker {
+            top: 173px !important;
+            left: 549px !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="navbar">
+            <div class="navbar_logo">
+                <a href="./index.html">
+                    <img src="./assets/img/logo.png" alt="SmartLab">
+                </a>
+            </div>
+            <div class="navbar_list">
+                <ul class="navbar_list_items">
+                    <li class="navbar_list_item"><a href="./index.html">Trang chủ</a></li>
+                    <li class="navbar_list_item navbar_list_item-active">
+                        <a href="./info.html">Đặt lịch sử dụng</a>
+                    </li>
+                    <li class="navbar_list_item">
+                        <a href="./history.html">Lịch sử đặt phòng</a>
+
+                    </li>
+                    <li class="navbar_list_item">
+                        <a href="./report.html">Báo cáo thí nghiệm </a>
+
+
+                    </li>
+                </ul>
+            </div>
+            <div class="start">
+                <div class="start_study">
+                    <a href="./login.html">Đăng nhập</a>
+
+                </div>
+                <div class="start_login">
+                    <img src="./assets/img/avatar.webp" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="navbar_detail"></div>
+        <div class="search-detail  d-flex justify-content-center mt-3">
+            <div class="d-flex bg-white border border-2 border-warning rounded shadow p-2">
+                <!-- Ô nhập địa điểm -->
+                <div class="input-group flex-grow-1 position-relative">
+                    <span class="input-group-text bg-white border-0"><i class="bi bi-house-door"></i></span>
+                    <input type="text" class="form-control border-0" id="room-input" placeholder="Phòng bạn cần tìm?"
+                        autocomplete="off">
+                    <div class="suggestions" id="room-suggestions"></div>
+                </div>
+
+                <!-- Chọn ngày nhận & trả phòng -->
+                <div class="input-group flex-grow-1">
+                    <span class="input-group-text bg-white border-0"><i class="bi bi-calendar"></i></span>
+                    <input type="text" class="form-control border-0" id="date-range" placeholder="Ngày nhận - Ngày trả">
+                </div>
+
+                <!-- Chọn số người và phòng -->
+                <div class="input-group flex-grow-1 dropdown">
+                    <span class="input-group-text bg-white border-0"><i class="bi bi-person"></i></span>
+                    <button class="form-control text-start border-0 dropdown-toggle" id="guest-dropdown" type="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        2 người · 1 phòng
+                    </button>
+                    <ul class="dropdown-menu p-3">
+                        <label>Số người</label>
+                        <input type="number" id="adults" class="form-control mb-2" min="1" value="2">
+                        <label>Phòng</label>
+                        <input type="number" id="rooms" class="form-control mb-2" min="1" value="1">
+                        <button class="btn btn-primary rounded w-100 mt-2" id="apply-guests">Áp dụng</button>
+                    </ul>
+                </div>
+
+                <!-- Nút tìm kiếm -->
+                <button class="btn btn-primary rounded px-4 ms-2">Tìm</button>
+            </div>
+        </div>
+        <div class="body">
+            <div class="container gallery-container py-4">
+                <div class="row g-3">
+                    <!-- Ảnh lớn bên trái -->
+                    <div class="col-md-6">
+                        <img src="./assets/img/room2.jpg" class="gallery-img img-thumbnail" alt="Ảnh lớn"
+                            data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage(this)">
+                    </div>
+
+                    <!-- Ảnh nhỏ bên phải -->
+                    <div class="col-md-6">
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <img src="./assets/img/room1.jpg" class="gallery-img img-thumbnail" alt="Ảnh nhỏ 1"
+                                    data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage(this)">
+                            </div>
+                            <div class="col-6">
+                                <img src="./assets/img/room1.jpg" class="gallery-img img-thumbnail" alt="Ảnh nhỏ 2"
+                                    data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage(this)">
+                            </div>
+                            <div class="col-6">
+                                <img src="./assets/img/room1.jpg" class="gallery-img img-thumbnail" alt="Ảnh nhỏ 3"
+                                    data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage(this)">
+                            </div>
+                            <div class="col-6">
+                                <img src="./assets/img/room1.jpg" class="gallery-img img-thumbnail" alt="Ảnh nhỏ 4"
+                                    data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage(this)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <!-- Cột trái - Nội dung chính -->
+                <div class="col-md-9">
+                    <div class="content">
+                        <div class="card mb-3 p-3">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <h3><strong>Microscopy Lab 3</strong></h3>
+                                    <p style="margin: 0;">Tầng 3 tòa nhà HA10</p>
+                                    <p style="margin: 0;">Sức chứa: 20 người </p>
+                                    <hr style="border: 1px solid #ccc; width: 100%;">
+                                    <p>Phòng thí nghiệm hiển vi tiên tiến Phòng thí nghiệm hiển vi tiên tiến</p>
+                                </div>
+                                <div class="col-md-3 d-flex flex-column  align-items-end justify-content-end">
+                                    <p>Giá: 1.500.000 VND </p>
+                                    <button class="btn btn-sm btn-primary" style="width: 50%;"><a
+                                            style="text-decoration: none; color: #fff; " href="./payment.html">Đặt
+                                            ngay</a> </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-3 p-3">
+                            <h5 class="section-title">Điểm nổi bật nhất</h5>
+                            <div class="row text-center">
+                                <div class="col-md-3">
+                                    <div class="highlight-icon">📍</div>
+                                    <p>Trong nội thành</p>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="highlight-icon">🕐</div>
+                                    <p>Nhận phòng 24 giờ</p>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="highlight-icon">📶</div>
+                                    <p>Wi-Fi miễn phí trong tất cả các phòng</p>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="highlight-icon">🧹</div>
+                                    <p>Dọn phòng hằng ngày</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-3 p-3">
+                            <h5 class="section-title">Cơ sở vật chất</h5>
+                            <div class="row">
+                                <div class="col-md-3">✔ Miễn phí Wi-Fi</div>
+                                <div class="col-md-3">✔ Bàn tiếp tân [24 giờ]</div>
+                                <div class="col-md-3">✔ Phòng không hút thuốc</div>
+                                <div class="col-md-3">✔ Dọn phòng hằng ngày</div>
+                                <div class="col-md-3">✔ Kính hiển vi điện tử</div>
+                                <div class="col-md-3">✔ Kính hiển vi quang học</div>
+                                <div class="col-md-3">✔ Máy đo tế bào</div>
+                                <div class="col-md-3">✔ Khẩu trang được cung cấp cho khách</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cột phải - Bản đồ -->
+                <div class="col-md-3">
+                    <div class="card p-2 mb-3">
+                        <h5 class="text-center">📍 Vị trí phòng thí nghiệm SmartLab</h5>
+                        <iframe width="100%" height="300" style="border:0;" loading="lazy" allowfullscreen
+                            referrerpolicy="no-referrer-when-downgrade"
+                            src="https://www.google.com/maps?q=20.9803125,105.8762344&hl=vi&z=17&output=embed">
+                        </iframe>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Modal phóng to ảnh có carousel -->
+        <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content bg-dark">
+                    <div class="modal-header border-0">
+                        <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner" id="carouselInner">
+                                <!-- Ảnh sẽ được chèn bằng JavaScript -->
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon"></span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+        </div>
+        <div class="footer_bottom">
+            <h3>TRUNG TÂM THÍ NGHIỆM SMARTLAB</h3>
+            <p><strong>Trải nghiệm thực tế - Công nghệ hàng đầu</strong></p>
+            <p><strong>Hotline:</strong> 0931 42 8899</p>
+            <p><strong>Địa chỉ: </strong>Địa chỉ: Số nhà 20, ngách 234/35 đường Hoàng Quốc Việt, phường Cổ Nhuế 1, quận
+                Bắc
+                Từ Liêm, TP Hà Nội</p>
+            <p>Giấy chứng nhận hoạt động đào tạo, bồi dưỡng số 1309/QĐ-SGDĐT ngày 31 tháng 07 năm 2023 do Sở Giáo dục và
+                Đào
+                tạo Hà Nội cấp</p>
+            <div class="certificates">
+                <img src="./assets/img/license_bct.svg" alt="Bộ Công Thương">
+                <img src="./assets/img/license_sectigo.svg" alt="Sectigo">
+                <img src="./assets/img/license_dcma.svg" alt="DMCA">
+            </div>
+        </div>
+</body>
+
+</html>
+<script>
+    // Kích hoạt Date Range Picker
+    $('#date-range').daterangepicker({
+        locale: {
+            format: 'DD/MM/YYYY'
+        },
+        autoApply: true
+    });
+
+    // Cập nhật số người & phòng khi nhấn "Áp dụng"
+    $("#apply-guests").click(function () {
+        let adults = $("#adults").val();
+        let rooms = $("#rooms").val();
+        let guestText = `${adults} người lớn  · ${rooms} phòng`;
+        $("#guest-dropdown").text(guestText);
+    });
+
+    let suggestions = [
+        { room: "Microscopy Lab" },
+        { room: "Spectroscopy Lab" },
+        { room: "NMR Lab" },
+        { room: "X-ray Lab" },
+        { room: "Clean Room" }
+    ];
+
+    function showSuggestions(query = "") {
+        let suggestionBox = $("#room-suggestions");
+        suggestionBox.empty();
+
+        let filtered = query
+            ? suggestions.filter(s => s.room.toLowerCase().includes(query.toLowerCase()))
+            : suggestions; // Nếu không nhập gì, hiển thị tất cả.
+
+        if (filtered.length > 0) {
+            filtered.forEach(s => {
+                suggestionBox.append(`
+                <div class="p-2 d-flex align-items-center">
+                    <i class="bi bi-building me-2"></i>
+                    <strong>${s.room}</strong>
+                </div>
+            `);
+            });
+            suggestionBox.show();
+        } else {
+            suggestionBox.hide();
+        }
+    }
+
+    // Hiển thị gợi ý khi click vào ô input
+    $("#room-input").on("focus", function () {
+        showSuggestions();
+    });
+
+    // Lọc gợi ý khi nhập chữ
+    $("#room-input").on("input", function () {
+        let query = $(this).val();
+        showSuggestions(query);
+    });
+
+    // Click vào gợi ý để chọn
+    $(document).on("click", "#room-suggestions div", function () {
+        $("#room-input").val($(this).find("strong").text());
+        $("#room-suggestions").hide();
+    });
+
+    // Ẩn gợi ý khi click ra ngoài
+    $(document).click(function (e) {
+        if (!$(e.target).closest("#room-input, #room-suggestions").length) {
+            $("#room-suggestions").hide();
+        }
+    });
+    // Lấy tất cả ảnh trong gallery
+    const galleryImages = document.querySelectorAll('.gallery-img');
+    const carouselInner = document.getElementById('carouselInner');
+
+    // Tạo carousel slide động từ ảnh
+    galleryImages.forEach((img, index) => {
+        const carouselItem = document.createElement('div');
+        carouselItem.classList.add('carousel-item');
+        if (index === 0) carouselItem.classList.add('active'); // Slide đầu tiên
+
+        const image = document.createElement('img');
+        image.src = img.src;
+        image.classList.add('d-block', 'w-100', 'rounded');
+        image.style.maxHeight = "80vh";
+        carouselItem.appendChild(image);
+        carouselInner.appendChild(carouselItem);
+
+        // Thêm onclick để hiển thị ảnh đúng vị trí khi click
+        img.addEventListener('click', () => {
+            // Xóa class active cũ
+            document.querySelectorAll('#carouselInner .carousel-item').forEach(item => item.classList.remove('active'));
+            carouselInner.children[index].classList.add('active');
+        });
+    });
+</script>

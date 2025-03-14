@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Đăng nhập SmartLab</title>
+  <!-- CSS cho intl-tel-input -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .login-card {
+      max-width: 420px;
+      margin: 0px auto 50px;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-tabs .nav-link.active {
+      border-bottom: 2px solid #4d7dfd;
+      color: #4d7dfd;
+    }
+
+    .form-control:focus {
+      border-color: #4d7dfd;
+      box-shadow: 0 0 0 0.1rem rgba(77, 125, 253, 0.25);
+    }
+
+    .btn-login {
+      background-color: #4d7dfd;
+      color: white;
+      font-weight: bold;
+    }
+
+    .btn-login:hover {
+      background-color: rgb(135, 179, 251);
+      border-color: rgb(135, 179, 251);
+      color: rgb(255, 255, 255);
+      transition: 0.15sease-in-out;
+    }
+
+    .btn-otp {
+      border: 1px solid #4d7dfd;
+      color: #4d7dfd;
+      font-weight: bold;
+    }
+
+    .social-btn {
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 10px;
+      font-weight: 500;
+    }
+
+    .divider {
+      text-align: center;
+      margin: 20px 0;
+      color: #999;
+      position: relative;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      position: absolute;
+      top: 57%;
+      width: 27%;
+      height: 1px;
+      background-color: #ccc;
+    }
+
+    .divider::before {
+      left: 0;
+    }
+
+    .divider::after {
+      right: 0;
+    }
+
+    .divider span {
+      background: #fff;
+      padding: 0 10px;
+    }
+
+    .eye-icon {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <a href="./index.html"><img src="./assets/img/logo_footer.png" alt="Logo SmartLab"
+      style="display:flex;margin: auto; width: 350px;"></a>
+  <div class="login-card">
+    <h4 class="fw-bold mb-1">Đăng nhập</h4>
+    <p class="text-muted mb-4">Để đảm bảo an toàn, xin vui lòng đăng nhập để truy cập vào thông tin</p>
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs mb-3" id="loginTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="email-tab" data-bs-toggle="tab" data-bs-target="#email-tab-pane"
+          type="button" role="tab">EMAIL</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="phone-tab" data-bs-toggle="tab" data-bs-target="#phone-tab-pane" type="button"
+          role="tab">DI ĐỘNG</button>
+      </li>
+    </ul>
+
+    <div class="tab-content" id="loginTabContent">
+      <!-- Email Tab -->
+      <div class="tab-pane fade show active" id="email-tab-pane" role="tabpanel">
+        <form id="loginForm">
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" id="emailInput" placeholder="Email" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Mật khẩu</label>
+            <div class="input-group">
+              <input type="password" class="form-control" id="passwordInput" placeholder="Mật khẩu" required>
+              <span class="input-group-text eye-icon" onclick="togglePassword()"><i id="eyeIcon"
+                  class="bi bi-eye"></i></span>
+            </div>
+          </div>
+          <div class="d-grid mb-2">
+            <button class="btn btn-login" type="submit">Đăng nhập</button>
+          </div>
+
+        </form>
+
+        <div class="d-flex justify-content-between small mb-3">
+          <a href="./register.html ">Tạo tài khoản</a>
+          <a href="#"><i class="bi bi-lock"></i> Quên mật khẩu?</a>
+        </div>
+
+        <div class="divider"><span>hoặc đăng nhập bằng</span></div>
+
+        <!-- Social Buttons -->
+        <div class="d-grid gap-2 mb-2">
+          <button class="btn social-btn"><img src="https://www.google.com/favicon.ico" alt="Google"
+              style=" width: 25px;margin-bottom: 5px ;"> Google </button>
+        </div>
+
+        <p class="text-center text-muted small mt-3">
+          Khi đăng nhập, tôi đồng ý với các <a href="#">Điều khoản sử dụng</a> và <a href="#">Chính sách bảo mật</a> của
+          SmartLab.
+        </p>
+      </div>
+
+      <!-- Phone Tab (placeholder) -->
+      <div class="tab-pane fade" id="phone-tab-pane" role="tabpanel">
+        <form id="loginForm">
+          <div class="mb-3">
+            <label class="form-label">Số di động</label>
+            <div class="input-group">
+
+              <input style="padding-right: 88px;" id="phoneInput" type="tel" class="form-control"
+                placeholder="Số di động" required>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Mật khẩu</label>
+            <div class="input-group">
+              <input type="password" class="form-control" id="passwordInput" placeholder="Mật khẩu" required>
+              <span class="input-group-text eye-icon" onclick="togglePassword()"><i id="eyeIcon"
+                  class="bi bi-eye"></i></span>
+            </div>
+          </div>
+          <div class="d-grid mb-2">
+            <button class="btn btn-login" type="submit">Đăng nhập</button>
+          </div>
+
+        </form>
+        <div class="d-flex justify-content-between small mb-3">
+          <a href="./register.html ">Tạo tài khoản</a>
+          <a href="#"><i class="bi bi-lock"></i> Quên mật khẩu?</a>
+        </div>
+
+        <div class="divider"><span>hoặc đăng nhập bằng</span></div>
+
+        <!-- Social Buttons -->
+        <div class="d-grid gap-2 mb-2">
+          <button class="btn social-btn"><img src="https://www.google.com/favicon.ico" alt="Google"
+              style=" width: 25px; margin-bottom: 5px ;"> Google </button>
+        </div>
+
+        <p class="text-center text-muted small mt-3">
+          Khi đăng nhập, tôi đồng ý với các <a href="#">Điều khoản sử dụng</a> và <a href="#">Chính sách bảo mật</a> của
+          SmartLab.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script xử lý -->
+  <script>
+    // Toggle ẩn/hiện mật khẩu
+    function togglePassword() {
+      const passwordInput = document.getElementById("passwordInput");
+      const eyeIcon = document.getElementById("eyeIcon");
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        eyeIcon.classList.remove("bi-eye");
+        eyeIcon.classList.add("bi-eye-slash");
+      } else {
+        passwordInput.type = "password";
+        eyeIcon.classList.remove("bi-eye-slash");
+        eyeIcon.classList.add("bi-eye");
+      }
+    }
+
+    // Xử lý logic đăng nhập
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const email = document.getElementById("emailInput").value.trim();
+      const password = document.getElementById("passwordInput").value.trim();
+
+      if (email === "" || password === "") {
+        alert("Vui lòng nhập đầy đủ email và mật khẩu.");
+        return;
+      }
+
+      // Kiểm tra với thông tin mẫu
+      if (email === "admin@gmail.com" && password === "123456") {
+        alert("Đăng nhập thành công!");
+      } else {
+        alert("Email hoặc mật khẩu không đúng!");
+      }
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
+<!-- JS cho intl-tel-input -->
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
+<!-- utils.js giúp hiển thị đầy đủ danh sách và format quốc tế -->
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js"></script>
+
+<script>
+  const phoneInputField = document.querySelector("#phoneInput");
+  const iti = window.intlTelInput(phoneInputField, {
+    separateDialCode: true,
+    initialCountry: "vn", // Quốc gia mặc định
+    preferredCountries: ["vn", "us", "kr", "jp"], // Quốc gia ưu tiên hiển thị trên đầu
+    utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js"
+  });
+</script>

@@ -1,0 +1,542 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Inter, sans-serif;
+  background-color: #f3f4f6;
+}
+
+a {
+  text-decoration: none;
+}
+.container-fluid {
+  padding: 0;
+}
+.navbar {
+  display: flex;
+  height: 100px;
+  background: rgb(21 42 109);
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 100px;
+}
+.navbar_logo {
+  width: 115px;
+  height: 73px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navbar_logo img {
+  width: 100px;
+}
+.navbar_list {
+  background-color: rgb(1 26 86);
+  height: 50px;
+  border-radius: 50px;
+  padding: 0 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navbar_list ul {
+  margin-left: -32px;
+  list-style: none;
+  color: rgb(153 163 186);
+  display: flex;
+}
+.navbar_list_items .navbar_list_item-active {
+  border-radius: 50px;
+  border: 1px solid #ffffff;
+  a {
+    color: #fff;
+  }
+}
+/* .navbar_list ul li:first-child a {
+    color: #007bff;
+} */
+.navbar_list ul li {
+  position: relative;
+  padding: 12px 16px;
+}
+
+.navbar_list ul li::before {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 50px;
+  width: 220px;
+  height: 20px;
+}
+.navbar_list > .navbar_list_items > .navbar_list_item:hover {
+  cursor: pointer;
+  color: rgb(1, 26, 86);
+  background: rgb(235, 245, 255);
+  border-radius: 50px;
+  a {
+    color: rgb(1, 26, 86);
+  }
+}
+
+.navbar_list_item {
+  margin-bottom: -16px;
+  font-size: 16px;
+  font-weight: 600;
+}
+.navbar_list_item-relative {
+  position: absolute;
+  padding-bottom: 7px;
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 7px);
+  left: 0;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  min-width: 212px;
+  z-index: 10;
+}
+
+.dropdown-menu ul {
+  display: block;
+}
+
+.dropdown-menu ul li {
+  padding: 10px 0;
+}
+
+.dropdown-menu ul li a {
+  color: rgb(35, 56, 118);
+  text-decoration: none;
+  display: block;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+.dropdown-menu ul li a:hover {
+  background-color: rgb(235, 245, 255);
+}
+
+.navbar_list_item-relative:hover .dropdown-menu {
+  display: block;
+}
+
+.navbar_list_item a {
+  text-decoration: none;
+  padding: 12px 0;
+  color: rgb(153 163 186);
+}
+
+.start {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.start_study a {
+  background-color: #007bff;
+  color: white;
+  padding: 13px 20px;
+  border-radius: 50px;
+  margin-right: 15px;
+  margin-bottom: 0px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.start_login img {
+  height: 47px;
+  width: 47px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+/* Footer */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+}
+.footer a{
+    text-decoration: none;
+    color: rgb(107, 114, 128);
+}
+.footer p{
+    color: rgb(107, 114, 128);
+}
+.footer_section {
+    flex: 1;
+    margin-right: 40px;
+}
+.footer_section-info ul li{
+    line-height: 34px;
+}
+.footer_section h3 {
+    font-size: 16px;
+    margin-top: 12px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.footer_section p, .footer_section ul {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer_section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer_section ul li {
+    margin-bottom: 5px;
+}
+
+.social_icons {
+    display: inline;
+    font-size: 21px;
+    margin-right: 27px;  
+    color: rgb(107 114 128);
+}
+.social_icons i{
+    margin-right: 15px;
+}
+
+.footer_section img {
+    display: flex;
+    max-width: 110px;
+    margin-bottom: 10px;
+}
+
+.footer_bottom {
+    background-color: #f0f0f0;
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.footer_bottom h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.footer_bottom p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgb(107, 114, 128);
+}
+.certificates{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.certificates img {
+    width: 132px;
+    margin: 10px;
+}
+/* search */
+.search {
+  position: relative;
+  background-color: rgb(21 42 109);
+  padding-bottom: 60px;
+  padding-top: 30px;
+}
+.search .input-group {
+  border-radius: 50px;
+}
+
+.search-box {
+  position: absolute;
+  z-index: 1000;
+  top: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  margin: auto;
+}
+.search-box .input-group {
+  flex: 1;
+  border-right: 2px solid orange;
+}
+.search-box .input-group:last-child {
+  border-right: none;
+}
+.search-box .form-control {
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+}
+.search-box button {
+  border-radius: 30px;
+}
+.dropdown-menu {
+  min-width: 250px;
+}
+.suggestions {
+  position: absolute;
+  top: 130%;
+  left: 0;
+  width: 100%;
+  background: white;
+  border-radius: 6px !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  display: none;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.suggestions strong {
+  font-size: 14px;
+  color: #333;
+  padding: 10px 15px;
+  display: block;
+  border-bottom: 1px solid #ddd;
+}
+
+.suggestions div {
+  padding: 12px 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.suggestions div:hover {
+  background: #f5f5f5;
+}
+
+.suggestions i {
+  font-size: 20px;
+  color: #007bff;
+}
+
+.suggestions small {
+  font-size: 12px;
+  color: #666;
+}
+.daterangepicker {
+  top: 267px !important;
+  left: 550px !important;
+}
+.dropdown-menu {
+  top: 8px !important;
+  left: -40px !important;
+}
+#adults,
+#rooms {
+  border: 1px solid black;
+}
+
+/* body info*/
+.body {
+  background-color: #fff;
+  padding: 60px 100px;
+}
+.navbar-link {
+  color: rgb(153 163 186);
+  font-weight: 600;
+}
+.navbar-item .active {
+  color: #2067da !important;
+}
+.tab-content .tab-pane {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-right: -16px; /* hoặc -gap */
+}
+
+/* Mỗi thẻ con (card, box, div...) trong .tab-pane có độ rộng để chia đều 5 cột */
+.tab-content .tab-pane > .card {
+  flex: 0 0 calc(20% - 16px); /* 5 cột, trừ khoảng gap */
+ 
+}
+
+/* body detail */
+.navbar_detail {
+  height: 50px;
+  background: rgb(21 42 109);
+}
+.search-detail {
+  position: absolute;
+  z-index: 1000;
+  top: 105px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  margin: auto;
+}
+.search-detail .input-group {
+  flex: 1;
+  border-right: 2px solid orange;
+}
+.search-detail .input-group:last-child {
+  border-right: none;
+}
+.search-detail .form-control {
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+}
+.search-detail button {
+  border-radius: 30px;
+}
+
+.gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.gallery-container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.body .gallery-container {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.modal-content {
+  background-color: #e7e8e8 !important ;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+}
+.img-thumbnail {
+  padding: 0px;
+}
+.gallery-img {
+  cursor: pointer;
+}
+
+.nav-tabs {
+  border-bottom: none;
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-top: -6px !important ;
+}
+
+.nav-tabs .nav-link {
+  border: none;
+  font-weight: 600;
+  color: #5a6c7b;
+  background-color: transparent;
+  position: relative;
+  padding-bottom: 8px;
+  font-size: 16px;
+}
+
+.nav-tabs .nav-link.active {
+  color: #007bff; /* Màu xanh khi active */
+  font-weight: 700;
+}
+
+.nav-tabs .nav-link.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #007bff; /* Gạch chân màu xanh */
+  border-radius: 10px;
+}
+
+/* Tab container giữ layout cố định */
+.tab-content {
+  position: relative;
+  min-height: 400px; /* hoặc auto nếu muốn co theo tab lớn nhất */
+}
+
+/* Tất cả tab-pane đều ở cùng vị trí */
+.tab-pane {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+/* Tab-pane active sẽ hiển thị */
+.tab-pane.active {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+  z-index: 1;
+}
+
+.card img{
+  height: 200px;
+  object-fit: cover
+
+}
+
+/* confirm */
+    .sticky-sidebar {
+        position: sticky;
+        top: 20px;
+        z-index: 999;
+    }
+
+/* cancel */
+.text-muted-small {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+.overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* lớp nền mờ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.popup-box {
+  background-color: white;
+  border-radius: 12px;
+  padding: 30px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.popup-icon {
+  font-size: 60px;
+  color: #28a745;
+  margin-bottom: 15px;
+}
+
+.popup-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.popup-message {
+  font-size: 15px;
+  color: #666;
+}
+
+.btn-custom {
+  min-width: 160px;
+}

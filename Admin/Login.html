@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Đăng nhập hệ thống</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #e0eafc, #cfdef3);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .logo{
+        display: flex;
+        justify-content: center;
+    }
+    .login-box {
+      background: #ffffff;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      width: 100%;
+      max-width: 420px;
+      transition: 0.3s ease;
+    }
+
+    .login-box h3 {
+      font-weight: bold;
+    }
+
+    .form-label {
+      font-weight: 500;
+    }
+
+    .form-control {
+      border-radius: 10px;
+      padding: 10px 15px;
+      transition: 0.2s ease;
+      border: 1px solid #ced4da;
+    }
+
+    .form-control:focus {
+      border-color: #1c4f94;
+      box-shadow: 0 0 0 0.2rem rgba(28, 79, 148, 0.25);
+    }
+
+    .password-toggle {
+      position: absolute;
+      top: 70%;
+      right: 15px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #6c757d;
+      transition: color 0.3s;
+    }
+
+    .password-toggle:hover {
+      color: #1c4f94;
+    }
+
+    .btn-login, .btn-reset {
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .btn-login {
+      background-color: #1c4f94;
+      color: #fff;
+    }
+
+    .btn-login:hover {
+      background-color: #285ea6;
+    }
+
+    .btn-reset {
+      background-color: #adb5bd;
+      color: #fff;
+    }
+
+    .btn-reset:hover {
+      background-color: #868e96;
+    }
+
+    .w-45 {
+      width: 48%;
+    }
+
+    @media (max-width: 576px) {
+      .w-45 {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .d-flex.justify-content-between {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+    <div class="body">
+        <div class="logo">
+            <img src="./img/logo.png" alt="SmartLab" style="width: 200px; margin: 16px 0;">
+        </div>
+      <div class="login-box">
+        <h3 class="text-center mb-4 text-primary">Đăng nhập hệ thống</h3>
+        <form>
+          <div class="mb-3">
+            <label for="username" class="form-label">Tài khoản</label>
+            <input type="text" class="form-control" id="username" placeholder="Nhập tài khoản">
+          </div>
+          <div class="mb-3 position-relative">
+            <label for="password" class="form-label">Mật khẩu</label>
+            <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu">
+            <i class="fa-solid fa-eye password-toggle" id="togglePassword"></i>
+          </div>
+          <div class="d-flex justify-content-between">
+            <a href="#" class="btn btn-login w-45" onclick="submitLogin()">Đăng nhập</a>
+            <a href="#" class="btn btn-reset w-45" onclick="resetForm()">Reset</a>
+          </div>
+        </form>
+      </div>
+    </div>
+   
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Script ẩn/hiện mật khẩu -->
+  <script>
+    const togglePassword = document.getElementById("togglePassword");
+    const passwordInput = document.getElementById("password");
+
+    togglePassword.addEventListener("click", () => {
+      const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+      passwordInput.setAttribute("type", type);
+      togglePassword.classList.toggle("fa-eye");
+      togglePassword.classList.toggle("fa-eye-slash");
+    });
+  </script>
+
+</body>
+</html>

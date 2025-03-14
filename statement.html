@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="./assets/CSS/history.css">
+    <title>Statement </title>
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #f1f5f9, #e2e8f0);
+            /* Nền tổng thể dịu mắt */
+        }
+
+        .report-container {
+            background-color: #ffffffcc;
+            /* Màu nền trắng trong mờ nhẹ (glass effect) */
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            /* Đổ bóng mạnh hơn để làm nổi */
+            font-family: 'Segoe UI', sans-serif;
+            padding: 40px;
+            backdrop-filter: blur(8px);
+            /* Hiệu ứng mờ nền phía sau nếu có hỗ trợ */
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            /* Viền nhẹ */
+            margin: 40px auto;
+            max-width: 900px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .report-title {
+            font-weight: bold;
+            color: #234076;
+            text-transform: uppercase;
+            border-bottom: 2px solid #234076;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        .report-section h5 {
+            font-weight: 600;
+            color: #234076;
+            margin-bottom: 12px;
+        }
+
+        .report-section p,
+        .report-section ul,
+        .report-section ol,
+        .report-section span {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .report-section ul li,
+        .report-section ol li {
+            margin-bottom: 6px;
+        }
+
+        .footer {
+            padding: 0;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="navbar">
+            <div class="navbar_logo">
+                <a href="./index.html">
+                    <img src="./assets/img/logo.png" alt="SmartLab">
+                </a>
+            </div>
+            <div class="navbar_list">
+                <ul class="navbar_list_items">
+                    <li class="navbar_list_item "><a href="./index.html">Trang chủ</a></li>
+                    <li class="navbar_list_item ">
+                        <a href="./info.html">Đặt lịch sử dụng</a>
+                    </li>
+                    <li class="navbar_list_item  ">
+                        <a href="./history.html">Lịch sử đặt phòng</a>
+
+                    </li>
+                    <li class="navbar_list_item navbar_list_item-active">
+                        <a href="./report.html">Báo cáo thí nghiệm </a>
+
+
+                    </li>
+                </ul>
+            </div>
+            <div class="start">
+                <div class="start_study">
+                    <a href="./login.html">Đăng nhập</a>
+                </div>
+                <div class="start_login">
+                    <img src="./assets/img/avatar.webp" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="body">
+            <div class="report-container p-4">
+                <h2 class="report-title text-center mb-4">BÁO CÁO THÍ NGHIỆM</h2>
+
+                <div class="report-section mb-3">
+                    <h5>1. Thông tin thí nghiệm</h5>
+                    <div class="row mb-2">
+                        <div class="col-md-6"><strong>Tên thí nghiệm:</strong> <span>Phản ứng oxi hóa khử</span></div>
+                        <div class="col-md-6"><strong>Ngày thực hiện:</strong> <span>14/03/2025</span></div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-6"><strong>Người thực hiện:</strong> <span>Nguyễn Văn A</span></div>
+                        <div class="col-md-6"><strong>Người hướng dẫn:</strong> <span>TS. Trần Thị B</span></div>
+                    </div>
+                </div>
+
+                <div class="report-section mb-3">
+                    <h5>2. Mục tiêu thí nghiệm</h5>
+                    <p>Hiểu rõ về cơ chế phản ứng oxi hóa khử và xác định chất khử - chất oxi hóa trong các phản ứng hoá
+                        học thông thường.</p>
+                </div>
+
+                <div class="report-section mb-3">
+                    <h5>3. Dụng cụ & Hóa chất</h5>
+                    <ul>
+                        <li>Ống nghiệm, giá đỡ, pipet</li>
+                        <li>Hóa chất: KMnO₄, H₂SO₄, Na₂SO₃, v.v.</li>
+                    </ul>
+                </div>
+
+                <div class="report-section mb-3">
+                    <h5>4. Quy trình thực hiện</h5>
+                    <ol>
+                        <li>Chuẩn bị dụng cụ sạch sẽ theo danh sách.</li>
+                        <li>Pha dung dịch KMnO₄ vào ống nghiệm.</li>
+                        <li>Thêm H₂SO₄ vào dung dịch.</li>
+                        <li>Quan sát hiện tượng khi cho thêm Na₂SO₃.</li>
+                    </ol>
+                </div>
+
+                <div class="report-section mb-3">
+                    <h5>5. Kết quả quan sát</h5>
+                    <p>Màu tím của KMnO₄ nhạt dần, chuyển sang màu không màu chứng tỏ KMnO₄ đã bị khử thành Mn²⁺.</p>
+                </div>
+
+                <div class="report-section mb-3">
+                    <h5>6. Nhận xét & Kết luận</h5>
+                    <p>Thí nghiệm thành công. Xác nhận được vai trò của chất oxi hóa và chất khử. Học viên hiểu rõ
+                        nguyên lý phản ứng.</p>
+                </div>
+
+                <div class="report-section mb-3">
+                    <h5>7. Kiến nghị</h5>
+                    <p>Cần tăng thời lượng thực hành hoặc hướng dẫn kỹ hơn về cách xử lý hiện tượng bất thường trong
+                        phản ứng.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    </div>
+
+    <!-- Script Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    </div>
+    </div>
+
+    <div class="footer">
+    </div>
+    <div class="footer_bottom">
+        <h3>TRUNG TÂM THÍ NGHIỆM SMARTLAB</h3>
+        <p><strong>Trải nghiệm thực tế - Công nghệ hàng đầu</strong></p>
+        <p><strong>Hotline:</strong> 0931 42 8899</p>
+        <p><strong>Địa chỉ: </strong>Địa chỉ: Số nhà 20, ngách 234/35 đường Hoàng Quốc Việt, phường Cổ Nhuế 1, quận
+            Bắc
+            Từ Liêm, TP Hà Nội</p>
+        <p>Giấy chứng nhận hoạt động đào tạo, bồi dưỡng số 1309/QĐ-SGDĐT ngày 31 tháng 07 năm 2023 do Sở Giáo dục và
+            Đào
+            tạo Hà Nội cấp</p>
+        <div class="certificates">
+            <img src="./assets/img/license_bct.svg" alt="Bộ Công Thương">
+            <img src="./assets/img/license_sectigo.svg" alt="Sectigo">
+            <img src="./assets/img/license_dcma.svg" alt="DMCA">
+        </div>
+    </div>
+</body>
+
+</html>
