@@ -10,6 +10,8 @@
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./assets/CSS/style.css">
+    <link rel="icon" href="./assets/img/logo_web.png" type="image/png">
+    <link rel="icon" href="./assets/img/logo_web.png" type="image/png">
     <title>QUẢN LÝ PHÒNG THÍ NGHIỆM</title>
 </head>
 
@@ -18,7 +20,7 @@
         <div class="navbar">
             <div class="navbar_logo">
                 <a href="./index.html">
-                    <img src="./assets/img/logo.png" alt="SmartLab">
+                    <img src="./assets/img/logo_light.png" alt="SmartLab">
                 </a>
             </div>
             <div class="navbar_list">
@@ -39,12 +41,19 @@
             </div>
             <div class="start">
                 <div class="start_study">
-                    <a href="./login.html">Đăng nhập</a>
+                    <a href="./role.html">Đăng nhập</a>
                 </div>
-                <div class="start_login">
-                    <img src="./assets/img/avatar.webp" alt="">
+                <div class="start_login" onclick="toggleMenu()">
+                    <img src="./assets/img/avatar.webp" alt="Ảnh đại diện" class="avatar-img">
+                    <div class="dropdown-menu" id="userMenu">
+                        <ul>
+                            <li><a href="./account.html"><i class="fas fa-user-circle"></i>Tài khoản</a></li>
+                            <li><a href="#"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+
         </div>
         <div class="body">
             <div class="boby_main">
@@ -69,17 +78,19 @@
                 <div class="option_cards">
                     <a href="./info.html">
                         <div class="option_card"
-                        style="background-image: radial-gradient(218.93% 138.81% at 100% 98.77%,#0029ff 0,#1479f3 50%,#47b7f7 100%)">
-                        <h3>Thông tin phòng thí nghiệm</h3>
-                        <p>Cung cấp danh sách các phòng thí nghiệm, bao gồm các thông tin chi tiết như tên phòng, trang
-                            thiết bị, sức chứa và tình trạng hiện tại.</p>
-                        <div class="option_card_btn">→</div>
-                    </div>
+                            style="background-image: radial-gradient(218.93% 138.81% at 100% 98.77%,#0029ff 0,#1479f3 50%,#47b7f7 100%)">
+                            <h3>Thông tin phòng thí nghiệm</h3>
+                            <p>Cung cấp danh sách các phòng thí nghiệm, bao gồm các thông tin chi tiết như tên phòng,
+                                trang
+                                thiết bị, sức chứa và tình trạng hiện tại.</p>
+                            <div class="option_card_btn">→</div>
+                        </div>
                     </a>
                     <a href="./history.html">
                         <div class="option_card" style="background-image: linear-gradient(46deg,#007e26,#00d741)">
                             <h3>Lịch sử đặt phòng</h3>
-                            <p> Hiển thị danh sách các phòng thí nghiệm mà người dùng đã đặt trước đó, bao gồm thông tin về
+                            <p> Hiển thị danh sách các phòng thí nghiệm mà người dùng đã đặt trước đó, bao gồm thông tin
+                                về
                                 thời gian, trạng thái đặt phòng và tùy chọn hủy hoặc chỉnh sửa nếu cần.</p>
                             <div class="option_card_btn">→</div>
                         </div>
@@ -115,7 +126,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body_img">
-                                    <img src="./assets/img/buoc1.png" alt="">
+                                    <img src="./assets/img/buoc1.jpg" alt="">
                                 </div>
                             </div>
                         </li>
@@ -130,7 +141,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body_img">
-                                    <img src="./assets/img/buoc2.png" alt="">
+                                    <img src="./assets/img/buoc2.jpg" alt="">
                                 </div>
                         </li>
                         <li class="card" id="card3">
@@ -145,7 +156,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body_img">
-                                    <img src="./assets/img/buoc3.png" alt="">
+                                    <img src="./assets/img/buoc3.avif" alt="">
                                 </div>
                         </li>
 
@@ -209,7 +220,7 @@
 
         </div>
         <div class="footer">
-            
+
             <div class="footer_section">
                 <h3>CÔNG TY CỔ PHẦN CÔNG NGHỆ SMARTLAB</h3>
                 <p><strong>Mã số doanh nghiệp: </strong>0109817671</p>
@@ -237,7 +248,7 @@
                     <li><a href="">Điều kiện và điều khoản giao dịch</a></li>
                     <li><a href="">Chính sách thanh toán</a></li>
                     <li><a href="">Chính sách bảo mật thông tin</a></li>
-                   
+
             </div>
 
             <div class="footer_section">
@@ -248,7 +259,7 @@
         </div>
 
         <div class="footer_bottom">
-            <h3>TRUNG TÂM ĐÀO TẠO NGOẠI NGỮ SMARTLAB</h3>
+            <h3>TRUNG TÂM ĐÀO TẠO SMARTLAB</h3>
             <p><strong>Trải nghiệm thực tế - Công nghệ hàng đầu</strong></p>
             <p><strong>Hotline:</strong> 0931 42 8899</p>
             <p><strong>Địa chỉ: </strong>Địa chỉ: Số nhà 20, ngách 234/35 đường Hoàng Quốc Việt, phường Cổ Nhuế 1, quận
@@ -271,4 +282,17 @@
     function scrollDown() {
         window.scrollBy({ top: 915, behavior: 'smooth' });
     }
+    function toggleMenu() {
+        var menu = document.getElementById("userMenu");
+        menu.classList.toggle("show");
+    }
+
+    // Đóng menu khi click ra ngoài
+    window.addEventListener("click", function (e) {
+        var menu = document.getElementById("userMenu");
+        var avatar = document.querySelector(".avatar-img");
+        if (!avatar.contains(e.target) && !menu.contains(e.target)) {
+            menu.classList.remove("show");
+        }
+    });
 </script>

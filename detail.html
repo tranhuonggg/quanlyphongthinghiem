@@ -25,6 +25,7 @@
 
     <!-- Bootstrap Bundle (gồm cả Popper và Modal JS) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="icon" href="./assets/img/logo_web.png" type="image/png">
 
     <title>Thông tin chi tiết </title>
     <style>
@@ -40,7 +41,7 @@
         <div class="navbar">
             <div class="navbar_logo">
                 <a href="./index.html">
-                    <img src="./assets/img/logo.png" alt="SmartLab">
+                    <img src="./assets/img/logo_light.png" alt="SmartLab">
                 </a>
             </div>
             <div class="navbar_list">
@@ -62,11 +63,16 @@
             </div>
             <div class="start">
                 <div class="start_study">
-                    <a href="./login.html">Đăng nhập</a>
-
+                    <a href="./role.html">Đăng nhập</a>
                 </div>
-                <div class="start_login">
-                    <img src="./assets/img/avatar.webp" alt="">
+                <div class="start_login" onclick="toggleMenu()">
+                    <img src="./assets/img/avatar.webp" alt="Ảnh đại diện" class="avatar-img">
+                    <div class="dropdown-menu" id="userMenu">
+                        <ul>
+                            <li><a href="./account.html"><i class="fas fa-user-circle"></i>Tài khoản</a></li>
+                            <li><a href="#"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -81,24 +87,23 @@
                     <div class="suggestions" id="room-suggestions"></div>
                 </div>
 
-                <!-- Chọn ngày nhận & trả phòng -->
+                <!-- Chọn ngày sử dụng phòng -->
                 <div class="input-group flex-grow-1">
                     <span class="input-group-text bg-white border-0"><i class="bi bi-calendar"></i></span>
-                    <input type="text" class="form-control border-0" id="date-range" placeholder="Ngày nhận - Ngày trả">
+                    <input type="text" class="form-control border-0" id="single-date" placeholder="Chọn ngày sử dụng">
                 </div>
+
 
                 <!-- Chọn số người và phòng -->
                 <div class="input-group flex-grow-1 dropdown">
                     <span class="input-group-text bg-white border-0"><i class="bi bi-person"></i></span>
                     <button class="form-control text-start border-0 dropdown-toggle" id="guest-dropdown" type="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        2 người · 1 phòng
+                        2 người 
                     </button>
                     <ul class="dropdown-menu p-3">
                         <label>Số người</label>
                         <input type="number" id="adults" class="form-control mb-2" min="1" value="2">
-                        <label>Phòng</label>
-                        <input type="number" id="rooms" class="form-control mb-2" min="1" value="1">
                         <button class="btn btn-primary rounded w-100 mt-2" id="apply-guests">Áp dụng</button>
                     </ul>
                 </div>
@@ -156,7 +161,7 @@
                                 <div class="col-md-3 d-flex flex-column  align-items-end justify-content-end">
                                     <p>Giá: 1.500.000 VND </p>
                                     <button class="btn btn-sm btn-primary" style="width: 50%;"><a
-                                            style="text-decoration: none; color: #fff; " href="./payment.html">Đặt
+                                            style="text-decoration: none; color: #fff; " href="./payment_b1.html">Đặt
                                             ngay</a> </button>
                                 </div>
                             </div>
@@ -258,6 +263,29 @@
                 <img src="./assets/img/license_dcma.svg" alt="DMCA">
             </div>
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('#single-date').daterangepicker({
+                    singleDatePicker: true,
+                    showDropdowns: true,
+                    locale: {
+                        format: 'DD/MM/YYYY',
+                        applyLabel: "Chọn",
+                        cancelLabel: "Hủy",
+                        daysOfWeek: ["CN", "T2", "T3", "T4", "T5", "T6", "T7"],
+                        monthNames: [
+                            "Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6",
+                            "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"
+                        ],
+                        firstDay: 1
+                    }
+                });
+            });
+        </script>
 </body>
 
 </html>
@@ -270,12 +298,11 @@
         autoApply: true
     });
 
-    // Cập nhật số người & phòng khi nhấn "Áp dụng"
-    $("#apply-guests").click(function () {
-        let adults = $("#adults").val();
-        let rooms = $("#rooms").val();
-        let guestText = `${adults} người lớn  · ${rooms} phòng`;
-        $("#guest-dropdown").text(guestText);
+      // Cập nhật số người khi nhấn "Áp dụng"
+      $("#apply-guests").click(function () {
+      let adults = $("#adults").val();
+      let guestText = `${adults} người `;
+      $("#guest-dropdown").text(guestText);
     });
 
     let suggestions = [
@@ -355,5 +382,18 @@
             document.querySelectorAll('#carouselInner .carousel-item').forEach(item => item.classList.remove('active'));
             carouselInner.children[index].classList.add('active');
         });
+    });
+    function toggleMenu() {
+        var menu = document.getElementById("userMenu");
+        menu.classList.toggle("show");
+    }
+
+    // Đóng menu khi click ra ngoài
+    window.addEventListener("click", function (e) {
+        var menu = document.getElementById("userMenu");
+        var avatar = document.querySelector(".avatar-img");
+        if (!avatar.contains(e.target) && !menu.contains(e.target)) {
+            menu.classList.remove("show");
+        }
     });
 </script>

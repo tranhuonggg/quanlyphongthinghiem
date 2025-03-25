@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/CSS/info.css">
+    <link rel="icon" href="./assets/img/logo_web.png" type="image/png">
+    <title>Thanh Toán </title>
+    <style>
+        .body {
+            background-color: #fff;
+            padding: 0 100px;
+        }
+
+        /* Progress bar section */
+        .step-wrapper {
+            display: flex;
+            font-size: 12px;
+            font-weight: 600;
+            color: #fff;
+            padding: 0 30px;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .step-progress-top {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            min-width: 600px;
+            position: relative;
+        }
+
+        .step-progress-bottom {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 800px;
+            margin-top: 5px;
+        }
+
+        .step-item,
+        .step-text {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .step-circle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #444;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #fff;
+            z-index: 1;
+            position: relative;
+        }
+
+        .step-item.active .step-circle {
+            background-color: #3b60ff;
+        }
+
+        .step-item.completed .step-circle {
+            background-color: #444;
+        }
+
+        .step-item.completed .step-circle::after {
+            content: "";
+            color: #fff;
+        }
+
+        /* Loại bỏ đường kẻ tổng, thay bằng từng đoạn kẻ giữa các bước */
+        .step-item:not(:first-child)::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 50%;
+            height: 3px;
+            background-color: white;
+            z-index: 0;
+            transform: translateY(-50%);
+        }
+
+        .step-item:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 0;
+            width: 50%;
+            height: 3px;
+            background-color: white;
+            z-index: 0;
+            transform: translateY(-50%);
+        }
+
+        .timer-bar {
+            background-color: #fff1f1;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+            color: #333;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            position: relative;
+        }
+
+        .timer {
+            color: red;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        /* form */
+        .form-box {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.08);
+            margin: auto;
+        }
+
+        .form-box h4 {
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .form-control {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            width: 100%;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #008000;
+            /* viền xanh lá khi focus */
+        }
+
+        .full-width {
+            margin-bottom: 15px;
+        }
+
+        .note-text {
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .form-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #3b60ff;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-button:hover {
+            background-color: #2a48e0;
+        }
+
+        label {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+
+        .header_card {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .price p {
+            font-size: 16px;
+            font-weight: bold;
+            margin-left: auto;
+        }
+
+
+
+        .section-title {
+            font-weight: 600;
+            font-size: 18px;
+            color: #007bff;
+        }
+
+        .payment-methods img {
+            height: 20px;
+            margin-right: 8px;
+        }
+
+        .payment-box {
+            background: #f0f9ff;
+            border-left: 4px solid #0d6efd;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .success-box {
+            background: #e1f3dc;
+            color: #155724;
+            border-left: 4px solid #28a745;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .notice-text {
+            color: red;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .pay-btn {
+            background: #0d6efd;
+            color: #fff;
+            font-weight: bold;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .pay-btn:hover {
+            background: #0b5ed7;
+        }
+
+        .no-risk {
+            color: green;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .step-item.completed::before {
+            background-color: #3b60ff;
+            
+        }      .step-item.active::after,
+        .step-item.active::before {
+            background-color: #3b60ff;
+            /* màu xanh dương cho bước hiện tại */
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container-fuild">
+        <div class="navbar">
+            <div class="navbar_logo">
+                <a href="./index.html">
+                    <img src="./assets/img/logo_light.png" alt="SmartLab" />
+                </a>
+            </div>
+            <div class="navbar_list">
+                <div class="step-wrapper">
+                    <div class="step-progress-top">
+                        <div class="step-item active">
+                            <div class="step-circle">1</div>
+                        </div>
+                        <div class="step-item completed">
+                            <div class="step-circle"  style=" background-color: #3b60ff; color: #fff;">2</div>
+                        </div>
+                        <div class="step-item ">
+                            <div class="step-circle ">✔</div>
+                        </div>
+                    </div>
+                    <div class="step-progress-bottom">
+                        <div class="step-text">
+                            <div>Thông tin khách hàng</div>
+                        </div>
+                        <div class="step-text">
+                            <div>Chi tiết thanh toán</div>
+                        </div>
+                        <div class="step-text">
+                            <div>Đã xác nhận đặt phòng!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="start">
+                <div class="start_study">
+                    <a href="./role.html">Đăng nhập</a>
+                </div>
+                <div class="start_login" onclick="toggleMenu()">
+                    <img src="./assets/img/avatar.webp" alt="Ảnh đại diện" class="avatar-img">
+                    <div class="dropdown-menu" id="userMenu">
+                        <ul>
+                            <li><a href="./account.html"><i class="fas fa-user-circle"></i>Tài khoản</a></li>
+                            <li><a href="#"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="timer-bar">
+            Chúng tôi đang giữ phòng cho quý khách…
+            <span class="timer" id="countdown">00:20:00</span>
+        </div>
+        <div class="body">
+            <div class="container p-4" style="display: flex; gap: 20px; flex-wrap: wrap;">
+                <!-- Bên trái: Thông tin thanh toán và khách hàng -->
+                <div style="flex: 1; width:70% ;">
+                    <div style="border: 1px solid #ccc; padding: 15px; border-radius: 10px; margin-bottom: 10px;">
+                        <h4>Chọn cách thanh toán</h4>
+                        <label style="font-size: 14px; line-height: 22px; font-weight: 600;">
+                            <input type="radio"> Thanh toán khi nhận phòng
+                        </label>
+                        <p style="font-size: 12px; color: rgb(112, 112, 112); margin-left: 20px;">Không thanh toán hôm
+                            nay.</p>
+                        <div style="background-color: #e6f4ea; padding: 10px; border-radius: 5px;">
+                            <p style="color: #00622f; font-weight: 600; font-size: 14px; margin: 0;">
+                                <img src="./assets/img/khien.png" alt="" style="width: 30px;"> KHÔNG SỢ RỦI RO!
+                            </p>
+                            <p style="font-size: 12px; color: rgb(57, 54, 54); margin: 0 0 0 35px;"> Hủy không tốn phí
+                                trước 23:59 ngày 17 Tháng 3, 2025 (giờ địa phương).</p>
+
+                        </div>
+                        <hr>
+                        <label
+                            style="display: block; margin-top: 15px;font-size: 14px; line-height: 22px; font-weight: 600;">
+                            <input type="radio"> Thanh toán ngay
+
+                        </label>
+                        <p style="font-size: 12px; color: rgb(112, 112, 112); margin-left: 20px;">Bạn cũng có thể chọn
+                            Thanh toán ngay bằng thẻ tín dụng hoặc phương thức thanh toán khác bên dưới.</p>
+                        <div class="payment-methods mb-3 ms-3">
+
+                            <img src="./assets/img/vnpay.png" alt="VNPay" height="14">
+                            <img src="./assets/img/momo.png" alt="MoMo" height="14">
+                        </div>
+
+                    </div>
+                    <div class="form-box">
+                        <div class="section-title mb-3">
+                            <i class="bi bi-shield-lock"></i> Thanh toán an toàn
+                        </div>
+                        <p>Tất cả thông tin thanh toán được mã hóa hoàn toàn và an toàn tuyệt đối.</p>
+
+                        <div class="success-box mb-3">
+                            Bước cuối cùng, gần hoàn tất rồi!
+                        </div>
+                        <div class="form-check mt-3">
+                            <input class="form-check-input" type="checkbox" id="agreePromo" checked>
+                            <label class="form-check-label" for="agreePromo" style="font-size: 14px;">
+                                Tôi đồng ý nhận thông tin khuyến mại và cập nhật từ SmartLab và các đối tác liên quan.
+                            </label>
+                        </div>
+
+                        <p style="font-size: 13px; margin-top: 10px;">
+                            Khi tiếp tục, bạn đồng ý với <a href="#">Điều khoản sử dụng</a> và <a href="#">Chính sách
+                                quyền riêng tư</a> của SmartLab.
+                        </p>
+
+                        <div class="notice-text">
+                            ⚠ Phòng được đặt với mức giá này trong ngày bạn chọn!
+                        </div>
+                        <p style="font-size: 14px;">Vui lòng xem lại xác nhận đặt phòng ở phần <strong>Lịch sử đặt
+                                phòng.</strong></p>
+
+                     <a href="payment_b3.html"  class="btn btn-primary w-100 text-center rounded-3">Xác nhận đặt phòng  </a>
+                        <div class="no-risk">KHÔNG LO RỦI RO – Hủy miễn phí dễ dàng</div>
+                    </div>
+
+                </div>
+
+                <!-- Bên phải: Thông tin đặt phòng -->
+                <div style="flex: 1; max-width: 40%;">
+                    <div
+                        style="margin-bottom: 10px; background-color: #fff; padding: 15px 20px; border-radius: 12px; border: 1px solid #ccc; display: flex; align-items: center; justify-content: space-between; font-family: sans-serif;">
+
+                        <!-- Cột nhận phòng -->
+                        <div
+                            style="display: flex;flex-direction: column;    margin: auto; justify-content: center; text-align: center;">
+                            <div style="font-weight: bold; font-size: 18px;">T4, tháng 3 19</div>
+                            <div style="font-size: 14px; color: gray;">Nhận phòng</div>
+                        </div>
+                    </div>
+                    <div
+                        style="background-color: #eaf4ff; padding: 15px 20px 0 20px; border-radius: 10px; border: 1px solid #90caf9;">
+                        <div class="header_card">
+                            <div class="title">
+                                <h4>Microscopy Lab 3</h4>
+                                <p style="font-size: 14px; color: rgb(77, 77, 77); margin: 6px 0;">Tầng 3 tòa nhà HA10
+                                </p>
+                            </div>
+                            <div class="cancel">
+                                <img src="./assets/img/./cancel.png" alt="" style="width: 100px;">
+                                <img src="./assets/img/./wifi.png" alt="" style="width: 100px;">
+
+                            </div>
+                        </div>
+
+                        <img src="./assets/img/room1.jpg" alt="Room"
+                            style="width: 100% ; border-radius: 10px; margin-bottom: 10px;">
+                        <br>
+                        <p style="font-size: 12px; color: rgb(112, 112, 112);margin: 0;">Tối đa: 20 người</p>
+                        <ul style="padding-left: 20px;">
+                            <li>Nhận phòng 24 giờ</li>
+                            <li>Nước uống chào đón</li>
+                            <li>Trà & cà phê</li>
+                            <li>Wi-Fi miễn phí</li>
+                        </ul>
+                        <hr>
+                        <div class="price d-flex">
+                            <p>Giá tiền: 1.500.000 VND </p>
+                        </div>
+                    </div>
+
+                    <div
+                        style="margin-top: 10px; background-color: #fff1f1; padding: 15px 20px 0 20px; border-radius: 10px; border: 1px solid #faa;">
+                        <h5>Nếu hủy phòng thì sẽ trả phí bao nhiêu?</h5>
+                        <p style="color: #363434; font-size: 14px;"><span style="color:#008000;">Đặt chỗ không có rủi
+                                ro! </span> Quý khách có thể dễ dàng hủy hoặc thay đổi đơn đặt phòng trực tuyến miễn
+                            phí!</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let totalSeconds = 15 * 60;
+
+        function updateTimer() {
+            let minutes = Math.floor(totalSeconds / 60);
+            let seconds = totalSeconds % 60;
+
+            let display = `00:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            document.getElementById("countdown").textContent = display;
+
+            if (totalSeconds <= 0) {
+                alert("Hết thời gian giữ phòng. Vui lòng đặt lại!");
+                history.back();
+            } else {
+                totalSeconds--;
+                setTimeout(updateTimer, 1000);
+            }
+        }
+
+        updateTimer();
+
+        function toggleMenu() {
+            var menu = document.getElementById("userMenu");
+            menu.classList.toggle("show");
+        }
+
+        // Đóng menu khi click ra ngoài
+        window.addEventListener("click", function (e) {
+            var menu = document.getElementById("userMenu");
+            var avatar = document.querySelector(".avatar-img");
+            if (!avatar.contains(e.target) && !menu.contains(e.target)) {
+                menu.classList.remove("show");
+            }
+        });
+    </script>
+    <div class="footer">
+    </div>
+    <div class="footer_bottom">
+        <h3>TRUNG TÂM THÍ NGHIỆM SMARTLAB</h3>
+        <p><strong>Trải nghiệm thực tế - Công nghệ hàng đầu</strong></p>
+        <p><strong>Hotline:</strong> 0931 42 8899</p>
+        <p><strong>Địa chỉ: </strong>Địa chỉ: Số nhà 20, ngách 234/35 đường Hoàng Quốc Việt, phường Cổ Nhuế 1, quận
+            Bắc
+            Từ Liêm, TP Hà Nội</p>
+        <p>Giấy chứng nhận hoạt động đào tạo, bồi dưỡng số 1309/QĐ-SGDĐT ngày 31 tháng 07 năm 2023 do Sở Giáo dục và
+            Đào
+            tạo Hà Nội cấp</p>
+        <div class="certificates">
+            <img src="./assets/img/license_bct.svg" alt="Bộ Công Thương">
+            <img src="./assets/img/license_sectigo.svg" alt="Sectigo">
+            <img src="./assets/img/license_dcma.svg" alt="DMCA">
+        </div>
+    </div>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</body>
+
+</html>

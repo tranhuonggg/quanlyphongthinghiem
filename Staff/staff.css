@@ -1,0 +1,151 @@
+body {
+    background-color: #f8f9fa;
+    font-family: "Roboto", sans-serif;
+  }
+  .sidebar {
+    height: 100vh;
+    background-color: rgb(35, 56, 118);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  .sidebar a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+  }
+  .sidebar a:hover,
+  .sidebar a.active {
+    background: linear-gradient(90deg, rgb(35, 56, 118), rgb(70, 100, 180));
+  }
+  .dashboard-card {
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  .dashboard-card i {
+    font-size: 2rem;
+  }
+  .logout-link {
+    border-top: 1px solid #555;
+  }
+  .content {
+    padding: 10px 20px;
+    margin-left: 240px; /* chỉnh theo độ rộng sidebar */
+  }
+  
+  .table {
+    width: 100%;
+    margin: 1rem 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .table th {
+    background-color: rgb(35, 56, 118);
+    color: white;
+    text-align: center;
+  }
+  
+  .table td {
+    text-align: center;
+  }
+  
+  .table tr:hover {
+    background-color: #d6e9f9; /* Màu xanh nhẹ khi hover */
+    transition: background-color 0.3s;
+  }
+  
+  .btn-sm {
+    padding: 0.25rem 0.75rem;
+    border-radius: 6px;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .btn-sm:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+  
+  .btn-warning {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #fff;
+  }
+  
+  .btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    color: #fff;
+  }
+  
+  .btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: #fff;
+  }
+  
+  /* Sắp xếp theo thứ tự */
+  .table th.sortable:after {
+    content: "\f0dc"; /* Biểu tượng sắp xếp */
+    font-family: FontAwesome;
+    margin-left: 10px;
+    color: #fff;
+  }
+  
+  .table th.sortable.sorted-asc:after {
+    content: "\f0de"; /* Mũi tên lên khi sắp xếp tăng dần */
+  }
+  
+  .table th.sortable.sorted-desc:after {
+    content: "\f0dd"; /* Mũi tên xuống khi sắp xếp giảm dần */
+  }
+  /* Căn chỉnh phần Show entries và Search */
+  .dataTables_wrapper .dataTables_length,
+  .dataTables_wrapper .dataTables_filter {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  .dataTables_wrapper .dataTables_filter {
+    text-align: right;
+    float: right;
+  }
+  
+  .dataTables_wrapper .dataTables_length label,
+  .dataTables_wrapper .dataTables_filter label {
+    display: flex;
+    align-items: center;
+  }
+  
+  .dataTables_wrapper .dataTables_length select {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  .infor {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .infor img {
+    width: 80px;
+    border-radius: 50%; /* Bo tròn hình ảnh */
+    object-fit: cover;
+    border: 3px solid #ddd;
+    margin: 0 auto 10px auto; /* Căn giữa ngang + khoảng cách dưới */
+    display: block; /* Đảm bảo ảnh block để margin auto hoạt động */
+  }
+  
+  .infor .name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+  }
+  

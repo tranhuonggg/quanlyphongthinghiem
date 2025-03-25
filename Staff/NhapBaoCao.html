@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Nhập Báo Cáo Thí Nghiệm</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .report-form-container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .form-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 26px;
+            font-weight: bold;
+        }
+        textarea {
+            resize: vertical;
+        }
+    </style>
+</head>
+<body>
+    <div class="report-form-container">
+        <h2 class="form-title">NHẬP BÁO CÁO THÍ NGHIỆM</h2>
+        <form method="post" action="/BaoCao/SaveReport">
+            <div class="mb-3 row">
+                <div class="col-md-6">
+                    <label class="form-label">Tên thí nghiệm</label>
+                    <input type="text" name="TenThiNghiem" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Ngày thực hiện</label>
+                    <input type="date" name="NgayThucHien" class="form-control" required>
+                </div>
+            </div>
+            
+            <div class="mb-3 row">
+                <div class="col-md-6">
+                    <label class="form-label">Người thực hiện</label>
+                    <input type="text" name="NguoiThucHien" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Người hướng dẫn</label>
+                    <input type="text" name="NguoiHuongDan" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Mục tiêu thí nghiệm</label>
+                <textarea name="MucTieu" class="form-control" rows="3" required></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Dụng cụ & Hóa chất</label>
+                <textarea name="DungCuHoaChat" class="form-control" rows="3" required></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Quy trình thực hiện</label>
+                <textarea name="QuyTrinh" class="form-control" rows="3" required></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Kết quả quan sát</label>
+                <textarea name="KetQua" class="form-control" rows="3" required></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Nhận xét & Kết luận</label>
+                <textarea name="NhanXetKetLuan" class="form-control" rows="3" required></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Kiến nghị</label>
+                <textarea name="KienNghi" class="form-control" rows="3"></textarea>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <a href="./LichSuDungPhong.html" class="btn btn-secondary">← Quay lại</a>
+                <button type="submit" class="btn btn-success">💾 Lưu báo cáo</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

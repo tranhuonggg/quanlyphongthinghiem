@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+        <link rel="icon" href="./assets/img/logo_web.png" type="image/png">
     <link rel="stylesheet" href="./assets/CSS/history.css">
     <title>Báo Cáo Thí Nghiệm </title>
     <style>
@@ -37,7 +37,7 @@
         <div class="navbar">
             <div class="navbar_logo">
                 <a href="./index.html">
-                    <img src="./assets/img/logo.png" alt="SmartLab">
+                    <img src="./assets/img/logo_light.png" alt="SmartLab">
                 </a>
             </div>
             <div class="navbar_list">
@@ -59,10 +59,16 @@
             </div>
             <div class="start">
                 <div class="start_study">
-                    <a href="./login.html">Đăng nhập</a>
+                    <a href="./role.html">Đăng nhập</a>
                 </div>
-                <div class="start_login">
-                    <img src="./assets/img/avatar.webp" alt="">
+                <div class="start_login" onclick="toggleMenu()">
+                    <img src="./assets/img/avatar.webp" alt="Ảnh đại diện" class="avatar-img">
+                    <div class="dropdown-menu" id="userMenu">
+                        <ul>
+                            <li><a href="./account.html"><i class="fas fa-user-circle"></i>Tài khoản</a></li>
+                            <li><a href="#"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -74,7 +80,7 @@
                 <div class="card-info">
                     <h5>Microscope Room</h5>
                     <p>Tên báo cáo </p>
-                    <p>28 tháng 6, 2022 – 1 tháng 7, 2022 ·</p>
+                    <p>28 tháng 6, 2022</p>
                    
                 </div>
             </a>
@@ -85,7 +91,7 @@
                 <div class="card-info">
                     <h5>Microscope Room</h5>
                     <p>Tên báo cáo </p>
-                    <p>28 tháng 6, 2022 – 1 tháng 7, 2022 ·</p>
+                    <p>28 tháng 6, 2022</p>
                 </div>
             </a>
         </div>
@@ -118,5 +124,19 @@
         </div>
     </div>
 </body>
+<script>
+     function toggleMenu() {
+        var menu = document.getElementById("userMenu");
+        menu.classList.toggle("show");
+    }
 
+    // Đóng menu khi click ra ngoài
+    window.addEventListener("click", function (e) {
+        var menu = document.getElementById("userMenu");
+        var avatar = document.querySelector(".avatar-img");
+        if (!avatar.contains(e.target) && !menu.contains(e.target)) {
+            menu.classList.remove("show");
+        }
+    });
+</script>
 </html>
